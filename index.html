@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>NewsOnTime</title>
+</head>
+<body>
+    <div class="date-time">
+        <p id="current-date">Today</p>
+    </div>
+    <div class="header">
+        <h1 class="site-title">
+            <span id="news-title">News<br>On Time</span>
+        </h1>
+    </div>
+    <div class="content">
+        <div class="news-section">
+            <div class="news-header">
+                <h2>Latest News</h2>
+                <div class="refresh-action">
+                    <label for="refresh-button">Boring News? Click here</label>
+                    <button id="refresh-button" class="refresh-button">Refresh</button>
+                </div>
+            </div>
+
+            <ul id="news-list">
+                <img src="images/world.png" alt="NewsOnTime Logo" class="logo">
+
+                <!-- News items will be dynamically inserted here -->
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
