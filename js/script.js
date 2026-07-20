@@ -1,18 +1,32 @@
 // Configuration to get news from GNews API
 const API_KEY = 'a701391abe66db73345acae6eb8a4cf1'; // Personal API key for GNews
-const URL = `https://gnews.io/api/v4/top-headlines?category=general&lang=es&apikey=${API_KEY}`;
+const URL = `https://gnews.io/api/v4/top-headlines?category=general&lang=en&apikey=${API_KEY}`;
 
 // Our class is called "news-item" and we will use it to render the news in the DOM
 const newsList = document.getElementById('news-list');
 // If the refresh button is clicked, we will call the fetchNews function to get the latest news
 const refreshButton = document.getElementById('refresh-button');
+// Shows today's date in the top banner
+const dateTimeElement = document.getElementById('current-date');
+
+function updateDateTime() {
+    if (!dateTimeElement) return;
+    const today = new Date();
+    dateTimeElement.textContent = today.toLocaleDateString('en-EN', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    });
+}
+updateDateTime(); // Initial call to set the date and time immediately
 
 // Using async/await to fetch news from the GNews API
 async function fetchNews() {
     try {
         // Show a loading message while fetching the news
         newsList.innerHTML = '<p class="loading-text">Cargando últimas noticias...</p>';
-    
+        
         const response = await fetch(URL);
         // Check if the response is OK (status code 200-299) and throw an error if not
         if (!response.ok) {
@@ -61,5 +75,9 @@ async function fetchNews() {
 }
 
 // Listeners for the DOMContentLoaded event and the refresh button click event to call the fetchNews function
-document.addEventListener('DOMContentLoaded', fetchNews);
+document.addEventListener('DOMContentLoaded', () => {
+    fetchNews(); // Fetch news when the page loads
+    updateDateTime(); // Update the date and time
+});
+
 refreshButton.addEventListener('click', fetchNews);
